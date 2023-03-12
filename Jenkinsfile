@@ -1,24 +1,24 @@
 pipeline {
-    agent { label 'docker' }
+    agent { label 'dockeragent' }
     triggers { 
         pollSCM('* * * * *')
     }
     stages {
         stage('vcs') {
             steps {
-                git url: 'https://github.com/khajadevopsmarch23/StudentCoursesRestAPI',
+                git url: '',
                     branch: 'develop'
             }
         }
         stage('build') {
             steps {
-                sh 'docker image build -t shaikkhajaibrahim/spc:latest .'
+                sh 'docker image build -t ravikiran2596/spc:latest .'
             }
         }
         stage('scan and push') {
             steps {
-                sh 'echo docker scan shaikkhajaibrahim/spc:latest'
-                sh 'docker image push shaikkhajaibrahim/spc:latest'
+                sh 'echo docker scan ravikiran2596/spc:latest'
+                sh 'docker image push ravikiran2596/spc:latest'
             }
         }
     }
